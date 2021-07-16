@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		CD8DA28526A10D4200CC3555 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA28426A10D4200CC3555 /* AppDelegate.swift */; };
 		CD8DA28726A10D4200CC3555 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA28626A10D4200CC3555 /* SceneDelegate.swift */; };
-		CD8DA28926A10D4200CC3555 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA28826A10D4200CC3555 /* ViewController.swift */; };
+		CD8DA28926A10D4200CC3555 /* ImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA28826A10D4200CC3555 /* ImageListViewController.swift */; };
 		CD8DA28C26A10D4200CC3555 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8DA28A26A10D4200CC3555 /* Main.storyboard */; };
 		CD8DA28E26A10D4300CC3555 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD8DA28D26A10D4300CC3555 /* Assets.xcassets */; };
 		CD8DA29126A10D4300CC3555 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8DA28F26A10D4300CC3555 /* LaunchScreen.storyboard */; };
 		CD8DA29C26A10D4300CC3555 /* ImageFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA29B26A10D4300CC3555 /* ImageFinderTests.swift */; };
 		CD8DA2A726A10D4300CC3555 /* ImageFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA2A626A10D4300CC3555 /* ImageFinderUITests.swift */; };
+		CD8DA2B726A149DB00CC3555 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA2B626A149DB00CC3555 /* ImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,7 @@
 		CD8DA28126A10D4200CC3555 /* ImageFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8DA28426A10D4200CC3555 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD8DA28626A10D4200CC3555 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CD8DA28826A10D4200CC3555 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CD8DA28826A10D4200CC3555 /* ImageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewController.swift; sourceTree = "<group>"; };
 		CD8DA28B26A10D4200CC3555 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD8DA28D26A10D4300CC3555 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD8DA29026A10D4300CC3555 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		CD8DA2A226A10D4300CC3555 /* ImageFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8DA2A626A10D4300CC3555 /* ImageFinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFinderUITests.swift; sourceTree = "<group>"; };
 		CD8DA2A826A10D4300CC3555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD8DA2B626A149DB00CC3555 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +101,9 @@
 		CD8DA28326A10D4200CC3555 /* ImageFinder */ = {
 			isa = PBXGroup;
 			children = (
+				CD8DA2B426A149AE00CC3555 /* Controllers */,
 				CD8DA28426A10D4200CC3555 /* AppDelegate.swift */,
 				CD8DA28626A10D4200CC3555 /* SceneDelegate.swift */,
-				CD8DA28826A10D4200CC3555 /* ViewController.swift */,
 				CD8DA28A26A10D4200CC3555 /* Main.storyboard */,
 				CD8DA28D26A10D4300CC3555 /* Assets.xcassets */,
 				CD8DA28F26A10D4300CC3555 /* LaunchScreen.storyboard */,
@@ -126,6 +128,23 @@
 				CD8DA2A826A10D4300CC3555 /* Info.plist */,
 			);
 			path = ImageFinderUITests;
+			sourceTree = "<group>";
+		};
+		CD8DA2B426A149AE00CC3555 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD8DA2B526A149BC00CC3555 /* Views */,
+				CD8DA28826A10D4200CC3555 /* ImageListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CD8DA2B526A149BC00CC3555 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CD8DA2B626A149DB00CC3555 /* ImageCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +277,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD8DA28926A10D4200CC3555 /* ViewController.swift in Sources */,
+				CD8DA28926A10D4200CC3555 /* ImageListViewController.swift in Sources */,
+				CD8DA2B726A149DB00CC3555 /* ImageCell.swift in Sources */,
 				CD8DA28526A10D4200CC3555 /* AppDelegate.swift in Sources */,
 				CD8DA28726A10D4200CC3555 /* SceneDelegate.swift in Sources */,
 			);
