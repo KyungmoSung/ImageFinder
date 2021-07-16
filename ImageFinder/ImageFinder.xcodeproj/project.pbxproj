@@ -210,6 +210,7 @@
 				CD8DA27D26A10D4200CC3555 /* Sources */,
 				CD8DA27E26A10D4200CC3555 /* Frameworks */,
 				CD8DA27F26A10D4200CC3555 /* Resources */,
+				6E07C542160DD42394824A14 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -247,6 +248,7 @@
 				CD8DA29E26A10D4300CC3555 /* Sources */,
 				CD8DA29F26A10D4300CC3555 /* Frameworks */,
 				CD8DA2A026A10D4300CC3555 /* Resources */,
+				3645EB0B8D7FB463B8402E7F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -370,6 +372,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3645EB0B8D7FB463B8402E7F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImageFinder-ImageFinderUITests/Pods-ImageFinder-ImageFinderUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImageFinder-ImageFinderUITests/Pods-ImageFinder-ImageFinderUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ImageFinder-ImageFinderUITests/Pods-ImageFinder-ImageFinderUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E07C542160DD42394824A14 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImageFinder/Pods-ImageFinder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImageFinder/Pods-ImageFinder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ImageFinder/Pods-ImageFinder-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E78F9AA8F83F05E9F85DCDD0 /* [CP] Check Pods Manifest.lock */ = {

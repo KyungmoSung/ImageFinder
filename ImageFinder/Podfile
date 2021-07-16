@@ -5,7 +5,7 @@ target 'ImageFinder' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for ImageFinder
+  pod 'Alamofire', '~> 5.4'
 
   target 'ImageFinderTests' do
     inherit! :search_paths
