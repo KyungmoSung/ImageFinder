@@ -10,13 +10,13 @@ import UIKit
 class ImageListViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
-    var images: [UIImage?] = [
-        UIImage(systemName: "heart"),
-        UIImage(systemName: "heart"),
-        UIImage(systemName: "heart"),
-        UIImage(systemName: "heart"),
-        UIImage(systemName: "heart"),
-        UIImage(systemName: "heart")
+    var images: [UIImage] = [
+        UIImage(systemName: "heart")!,
+        UIImage(systemName: "heart")!,
+        UIImage(systemName: "heart")!,
+        UIImage(systemName: "heart")!,
+        UIImage(systemName: "heart")!,
+        UIImage(systemName: "heart")!
     ]
     
     override func viewDidLoad() {
@@ -36,10 +36,8 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell else {
             return UICollectionViewCell()
         }
-        
-        if images.count > indexPath.row {
-            cell.image = images[indexPath.row]
-        }
+
+        cell.image = images[safe: indexPath.row]
         
         return cell
     }

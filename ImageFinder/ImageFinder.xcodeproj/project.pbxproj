@@ -16,6 +16,7 @@
 		CD8DA29C26A10D4300CC3555 /* ImageFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA29B26A10D4300CC3555 /* ImageFinderTests.swift */; };
 		CD8DA2A726A10D4300CC3555 /* ImageFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA2A626A10D4300CC3555 /* ImageFinderUITests.swift */; };
 		CD8DA2B726A149DB00CC3555 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA2B626A149DB00CC3555 /* ImageCell.swift */; };
+		CD8DA2BA26A152AF00CC3555 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA2B926A152AF00CC3555 /* CollectionExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		CD8DA2A626A10D4300CC3555 /* ImageFinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFinderUITests.swift; sourceTree = "<group>"; };
 		CD8DA2A826A10D4300CC3555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD8DA2B626A149DB00CC3555 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		CD8DA2B926A152AF00CC3555 /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		CD8DA28326A10D4200CC3555 /* ImageFinder */ = {
 			isa = PBXGroup;
 			children = (
+				CD8DA2B826A1528300CC3555 /* Extensions */,
 				CD8DA2B426A149AE00CC3555 /* Controllers */,
 				CD8DA28426A10D4200CC3555 /* AppDelegate.swift */,
 				CD8DA28626A10D4200CC3555 /* SceneDelegate.swift */,
@@ -145,6 +148,14 @@
 				CD8DA2B626A149DB00CC3555 /* ImageCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CD8DA2B826A1528300CC3555 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CD8DA2B926A152AF00CC3555 /* CollectionExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD8DA2BA26A152AF00CC3555 /* CollectionExtension.swift in Sources */,
 				CD8DA28926A10D4200CC3555 /* ImageListViewController.swift in Sources */,
 				CD8DA2B726A149DB00CC3555 /* ImageCell.swift in Sources */,
 				CD8DA28526A10D4200CC3555 /* AppDelegate.swift in Sources */,
