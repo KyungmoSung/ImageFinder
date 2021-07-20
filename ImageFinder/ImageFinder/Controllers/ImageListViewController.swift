@@ -17,14 +17,29 @@ class ImageListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar()
+        setupSearchController()
+        
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
-        
-        fetchImages()
     }
     
-    func fetchImages() {
-        APIManager.request(AppURL.searchImage(on: searchEngine), method: .get, params: ["query": "apple"], responseType: NaverResponse.self) { result in
+    func setupNavigationBar() {
+        navigationItem.title = "Image Finder"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func setupSearchController() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.scopeButtonTitles = SearchEngine.allCases.map{ $0.title }
+        searchController.searchBar.showsScopeBar = true
+        searchController.searchBar.delegate = self
+        
+        navigationItem.searchController = searchController
+    }
+    
+    func fetchImages(query: String) {
+        APIManager.request(AppURL.searchImage(on: searchEngine), method: .get, params: ["query": query], responseType: NaverResponse.self) { result in
             switch result {
             case .success(let response):
                 dump(response)
@@ -64,5 +79,27 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
             }
         }
         return cell
+    }
+}
+
+extension ImageListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else {
+            return
+        }
+        
+        fetchImages(query: text)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        guard let searchEngine = SearchEngine(rawValue: selectedScope) else {
+            return
+        }
+        
+        self.searchEngine = searchEngine
+        
+        if let text = searchBar.text {
+            fetchImages(query: text)
+        }
     }
 }
