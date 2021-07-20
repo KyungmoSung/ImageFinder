@@ -10,22 +10,30 @@ import UIKit
 class ImageListViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
-    var images: [Document] = []
+//    var images: [Document] = []
+    var images: [Item] = []
+    var searchEngine: SearchEngine = .naver
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
+        
+        fetchImages()
     }
     
     func fetchImages() {
-        APIManager.request(AppURL.searchImage(on: .kakao), method: .get, params: ["query": "apple"], responseType: KakaoResponse.self) { result in
+        APIManager.request(AppURL.searchImage(on: searchEngine), method: .get, params: ["query": "apple"], responseType: NaverResponse.self) { result in
             switch result {
             case .success(let response):
                 dump(response)
-                if let documents = response.documents {
-                    self.images = documents
+//                if let documents = response.documents {
+//                    self.images = documents
+//                    self.imageCollectionView.reloadData()
+//                }
+                if let items = response.items {
+                    self.images = items
                     self.imageCollectionView.reloadData()
                 }
             case .failure(let error):
@@ -42,7 +50,8 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell,
-              let thumbnailUrl = images[safe: indexPath.row]?.thumbnailUrl else {
+//              let thumbnailUrl = images[safe: indexPath.row]?.thumbnailUrl else {
+              let thumbnailUrl = images[safe: indexPath.row]?.thumbnail else {
             return UICollectionViewCell()
         }
         

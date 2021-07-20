@@ -6,25 +6,25 @@
 //
 
 enum AppURL {
-    enum Engine {
-        case kakao
-    }
-    
-    static func domain(for engine: Engine) -> String {
-        switch engine {
+    static func domain(for searchEngine: SearchEngine) -> String {
+        switch searchEngine {
         case .kakao:
             return "https://dapi.kakao.com"
+        case .naver:
+            return "https://openapi.naver.com"
         }
     }
     
-    static func searchImage(on engine: Engine) -> String {
+    static func searchImage(on searchEngine: SearchEngine) -> String {
         var api: String!
         
-        switch engine {
+        switch searchEngine {
         case .kakao:
             api = "/v2/search/image"
+        case .naver:
+            api = "/v1/search/image"
         }
         
-        return AppURL.domain(for: engine) + api
+        return AppURL.domain(for: searchEngine) + api
     }
 }
