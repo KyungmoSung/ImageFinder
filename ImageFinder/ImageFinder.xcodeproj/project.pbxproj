@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,10 @@
 		CD8DA2A726A10D4300CC3555 /* ImageFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA2A626A10D4300CC3555 /* ImageFinderUITests.swift */; };
 		CD8DA2B726A149DB00CC3555 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA2B626A149DB00CC3555 /* ImageCell.swift */; };
 		CD8DA2BA26A152AF00CC3555 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA2B926A152AF00CC3555 /* CollectionExtension.swift */; };
+		CD8EBD8F26A16A0000AC13B7 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8EBD8E26A16A0000AC13B7 /* APIManager.swift */; };
+		CD8EBD9126A1766300AC13B7 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8EBD9026A1766300AC13B7 /* URLConstants.swift */; };
+		CD8EBD9326A177C800AC13B7 /* KeyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8EBD9226A177C800AC13B7 /* KeyConstants.swift */; };
+		CD8EBD9626A6601700AC13B7 /* KakaoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8EBD9526A6601700AC13B7 /* KakaoResponse.swift */; };
 		ECCE95F007DAD7770C03504F /* Pods_ImageFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD79F17BD2F7A1018245A96 /* Pods_ImageFinder.framework */; };
 		FEFF1BC0DAD6C87CBFA0B2CA /* Pods_ImageFinder_ImageFinderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FBA177013EED7478AF7C52 /* Pods_ImageFinder_ImageFinderUITests.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +68,10 @@
 		CD8DA2A826A10D4300CC3555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD8DA2B626A149DB00CC3555 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		CD8DA2B926A152AF00CC3555 /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
+		CD8EBD8E26A16A0000AC13B7 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		CD8EBD9026A1766300AC13B7 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
+		CD8EBD9226A177C800AC13B7 /* KeyConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyConstants.swift; sourceTree = "<group>"; };
+		CD8EBD9526A6601700AC13B7 /* KakaoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoResponse.swift; sourceTree = "<group>"; };
 		F275BC24D35E4D67A3A4F455 /* Pods-ImageFinderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageFinderTests.release.xcconfig"; path = "Target Support Files/Pods-ImageFinderTests/Pods-ImageFinderTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +113,6 @@
 				320083906AF05A638F09ADA5 /* Pods-ImageFinderTests.debug.xcconfig */,
 				F275BC24D35E4D67A3A4F455 /* Pods-ImageFinderTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -144,6 +151,8 @@
 		CD8DA28326A10D4200CC3555 /* ImageFinder */ = {
 			isa = PBXGroup;
 			children = (
+				CD8EBD9426A6600500AC13B7 /* Models */,
+				CD8EBD8D26A166E700AC13B7 /* Common */,
 				CD8DA2B826A1528300CC3555 /* Extensions */,
 				CD8DA2B426A149AE00CC3555 /* Controllers */,
 				CD8DA28426A10D4200CC3555 /* AppDelegate.swift */,
@@ -197,6 +206,24 @@
 				CD8DA2B926A152AF00CC3555 /* CollectionExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CD8EBD8D26A166E700AC13B7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CD8EBD8E26A16A0000AC13B7 /* APIManager.swift */,
+				CD8EBD9026A1766300AC13B7 /* URLConstants.swift */,
+				CD8EBD9226A177C800AC13B7 /* KeyConstants.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CD8EBD9426A6600500AC13B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CD8EBD9526A6601700AC13B7 /* KakaoResponse.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,9 +465,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD8DA2BA26A152AF00CC3555 /* CollectionExtension.swift in Sources */,
+				CD8EBD9626A6601700AC13B7 /* KakaoResponse.swift in Sources */,
 				CD8DA28926A10D4200CC3555 /* ImageListViewController.swift in Sources */,
 				CD8DA2B726A149DB00CC3555 /* ImageCell.swift in Sources */,
+				CD8EBD9326A177C800AC13B7 /* KeyConstants.swift in Sources */,
+				CD8EBD9126A1766300AC13B7 /* URLConstants.swift in Sources */,
 				CD8DA28526A10D4200CC3555 /* AppDelegate.swift in Sources */,
+				CD8EBD8F26A16A0000AC13B7 /* APIManager.swift in Sources */,
 				CD8DA28726A10D4200CC3555 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,7 +650,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YV47R3P48P;
+				DEVELOPMENT_TEAM = 2X39P4CCEG;
 				INFOPLIST_FILE = ImageFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -639,7 +670,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YV47R3P48P;
+				DEVELOPMENT_TEAM = 2X39P4CCEG;
 				INFOPLIST_FILE = ImageFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
