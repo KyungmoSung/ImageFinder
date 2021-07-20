@@ -17,7 +17,7 @@ class APIManager {
             .accept("application/json")
         ]
         
-        if stringURL.starts(with: AppURL.Domains.kakao) {
+        if stringURL.starts(with: AppURL.domain(for: .kakao)) {
             headers.add(.authorization("KakaoAK \(AppKey.kakao)"))
         }
         

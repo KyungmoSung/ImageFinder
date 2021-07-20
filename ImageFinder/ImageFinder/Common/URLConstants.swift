@@ -5,18 +5,26 @@
 //  Created by Front-Artist on 2021/07/16.
 //
 
-struct AppURL {
-    struct Domains {
-        static let kakao = "https://dapi.kakao.com"
+enum AppURL {
+    enum Engine {
+        case kakao
     }
     
-    struct API {
-        struct Kakao {
-            static let searchImage = Domains.kakao + "/v2/search/image"
+    static func domain(for engine: Engine) -> String {
+        switch engine {
+        case .kakao:
+            return "https://dapi.kakao.com"
+        }
+    }
+    
+    static func searchImage(on engine: Engine) -> String {
+        var api: String!
+        
+        switch engine {
+        case .kakao:
+            api = "/v2/search/image"
         }
         
-        struct Naver {
-            
-        }
+        return AppURL.domain(for: engine) + api
     }
 }

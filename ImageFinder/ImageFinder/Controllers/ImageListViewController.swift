@@ -20,7 +20,7 @@ class ImageListViewController: UIViewController {
     }
     
     func fetchImages() {
-        APIManager.request(AppURL.API.Kakao.searchImage, method: .get, params: ["query": "apple"], responseType: KakaoResponse.self) { result in
+        APIManager.request(AppURL.searchImage(on: .kakao), method: .get, params: ["query": "apple"], responseType: KakaoResponse.self) { result in
             switch result {
             case .success(let response):
                 dump(response)
