@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 // MARK: - NaverResponse
 struct NaverResponse: Codable {
@@ -24,6 +25,20 @@ struct NaverResponse: Codable {
     }
 }
 
+extension NaverResponse: PageableImageInfo {
+    var imageMetaDatas: [ImageMetaData]? {
+        return items
+    }
+    
+    var isEnd: Bool {
+        guard let total = total, let start = start, let display = display else {
+            return true
+        }
+        
+        return total <= (start + display - 1)
+    }
+}
+
 // MARK: - Item
 struct Item: Codable {
     let title: String?
@@ -38,5 +53,24 @@ struct Item: Codable {
         case thumbnail = "thumbnail"
         case sizeheight = "sizeheight"
         case sizewidth = "sizewidth"
+    }
+}
+
+extension Item: ImageMetaData {
+    var imageUrl: String? {
+        return link
+    }
+    
+    var thumbnailUrl: String? {
+        return thumbnail
+    }
+    
+    var imageSize: CGSize? {
+        guard let sizewidth = sizewidth, let sizeheight = sizeheight,
+           let width = Int(sizewidth), let height = Int(sizeheight) else {
+            return nil
+        }
+        
+        return CGSize(width: width, height: height)
     }
 }

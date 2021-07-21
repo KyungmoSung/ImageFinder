@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 // MARK: - KakaoResponse
 struct KakaoResponse: Codable {
@@ -15,6 +16,20 @@ struct KakaoResponse: Codable {
     enum CodingKeys: String, CodingKey {
         case meta = "meta"
         case documents = "documents"
+    }
+}
+
+extension KakaoResponse: PageableImageInfo {
+    var imageMetaDatas: [ImageMetaData]? {
+        return documents
+    }
+    
+    var isEnd: Bool {
+        guard let meta = meta, let isEnd = meta.isEnd else {
+            return true
+        }
+        
+        return isEnd
     }
 }
 
@@ -38,6 +53,16 @@ struct Document: Codable {
         case displaySitename = "display_sitename"
         case docUrl = "doc_url"
         case datetime = "datetime"
+    }
+}
+
+extension Document: ImageMetaData {
+    var imageSize: CGSize? {
+        guard let width = width, let height = height else {
+            return nil
+        }
+        
+        return CGSize(width: width, height: height)
     }
 }
 

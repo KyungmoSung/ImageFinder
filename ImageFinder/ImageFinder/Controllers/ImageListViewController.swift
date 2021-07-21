@@ -6,13 +6,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class ImageListViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
-//    var images: [Document] = []
-    var images: [Item] = []
-    var searchEngine: SearchEngine = .naver
+    var imageMetaDatas: [ImageMetaData] = []
+    var searchEngine: SearchEngine = .kakao
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,16 +39,19 @@ class ImageListViewController: UIViewController {
     }
     
     func fetchImages(query: String) {
-        APIManager.request(AppURL.searchImage(on: searchEngine), method: .get, params: ["query": query], responseType: NaverResponse.self) { result in
+        switch searchEngine {
+        case .kakao:
+            APIManager.request(AppURL.searchImage(on: .kakao), method: .get, params: ["query": query], responseType: KakaoResponse.self, completion: completion)
+        case .naver:
+            APIManager.request(AppURL.searchImage(on: .naver), method: .get, params: ["query": query], responseType: NaverResponse.self, completion: completion)
+        }
+        
+        func completion<T>(result: (Result<T, AFError>)) where T: PageableImageInfo {
             switch result {
             case .success(let response):
                 dump(response)
-//                if let documents = response.documents {
-//                    self.images = documents
-//                    self.imageCollectionView.reloadData()
-//                }
-                if let items = response.items {
-                    self.images = items
+                if let imageMetaDatas = response.imageMetaDatas {
+                    self.imageMetaDatas = imageMetaDatas
                     self.imageCollectionView.reloadData()
                 }
             case .failure(let error):
@@ -60,13 +63,12 @@ class ImageListViewController: UIViewController {
 
 extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return imageMetaDatas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell,
-//              let thumbnailUrl = images[safe: indexPath.row]?.thumbnailUrl else {
-              let thumbnailUrl = images[safe: indexPath.row]?.thumbnail else {
+              let thumbnailUrl = imageMetaDatas[safe: indexPath.row]?.thumbnailUrl else {
             return UICollectionViewCell()
         }
         
@@ -78,6 +80,7 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
                 cell.image = UIImage(data: data!)
             }
         }
+        
         return cell
     }
 }
