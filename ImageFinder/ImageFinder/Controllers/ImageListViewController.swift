@@ -100,19 +100,12 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell,
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ThumbnailCell", for: indexPath) as? ThumbnailCell,
               let thumbnailUrl = imageMetaDatas[safe: indexPath.row]?.thumbnailUrl else {
             return UICollectionViewCell()
         }
         
-        let url = URL(string: thumbnailUrl)
-
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                cell.image = UIImage(data: data!)
-            }
-        }
+        cell.imageURL = URL(string: thumbnailUrl)
         
         return cell
     }
