@@ -26,8 +26,12 @@ struct NaverResponse: Codable {
 }
 
 extension NaverResponse: PageableImageInfo {
-    var imageMetaDatas: [ImageMetaData]? {
-        return items
+    func nextPage(current: Int) -> Int {
+        return current + imageMetaDatas.count
+    }
+    
+    var imageMetaDatas: [ImageMetaData] {
+        return items ?? []
     }
     
     var isEnd: Bool {

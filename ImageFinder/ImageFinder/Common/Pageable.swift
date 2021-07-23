@@ -10,10 +10,11 @@ import CoreGraphics
 
 protocol Pageable {
     var isEnd: Bool { get }
+    func nextPage(current: Int) -> Int
 }
 
 protocol PageableImageInfo: Pageable {
-    var imageMetaDatas: [ImageMetaData]? { get }
+    var imageMetaDatas: [ImageMetaData] { get }
 }
 
 protocol ImageMetaData {

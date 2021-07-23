@@ -20,8 +20,8 @@ struct KakaoResponse: Codable {
 }
 
 extension KakaoResponse: PageableImageInfo {
-    var imageMetaDatas: [ImageMetaData]? {
-        return documents
+    func nextPage(current: Int) -> Int {
+        return current + 1
     }
     
     var isEnd: Bool {
@@ -30,6 +30,10 @@ extension KakaoResponse: PageableImageInfo {
         }
         
         return isEnd
+    }
+    
+    var imageMetaDatas: [ImageMetaData] {
+        return documents ?? []
     }
 }
 

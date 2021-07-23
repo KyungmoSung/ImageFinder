@@ -20,4 +20,10 @@ class ImageCell: UICollectionViewCell {
             }
         }
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        image = nil
+    }
 }

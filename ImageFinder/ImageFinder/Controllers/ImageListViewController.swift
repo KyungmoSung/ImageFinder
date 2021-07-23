@@ -11,8 +11,20 @@ import Alamofire
 class ImageListViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
+    let numberOfSearchResults = 10
+    
+    var searchEngine: SearchEngine = .kakao {
+        didSet {
+            page = 1
+            hasMoreImages = true
+            imageMetaDatas.removeAll()
+            imageCollectionView.reloadData()
+        }
+    }
+    
     var imageMetaDatas: [ImageMetaData] = []
-    var searchEngine: SearchEngine = .kakao
+    var page: Int = 1
+    var hasMoreImages: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,27 +45,48 @@ class ImageListViewController: UIViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.scopeButtonTitles = SearchEngine.allCases.map{ $0.title }
         searchController.searchBar.showsScopeBar = true
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
         
         navigationItem.searchController = searchController
     }
     
-    func fetchImages(query: String) {
+    func fetchImages(on searchEngine: SearchEngine, query: String) {
+        guard hasMoreImages else {
+            return
+        }
+        
+        var params: [String: Any] = [
+            "query": query,
+        ]
+        
         switch searchEngine {
         case .kakao:
-            APIManager.request(AppURL.searchImage(on: .kakao), method: .get, params: ["query": query], responseType: KakaoResponse.self, completion: completion)
+            params["sort"] = "accuracy"
+            params["page"] = page
+            params["size"] = numberOfSearchResults
+            APIManager.request(AppURL.searchImage(on: .kakao), method: .get, params: params, responseType: KakaoResponse.self, completion: completion)
         case .naver:
-            APIManager.request(AppURL.searchImage(on: .naver), method: .get, params: ["query": query], responseType: NaverResponse.self, completion: completion)
+            params["sort"] = "sim"
+            params["start"] = page
+            params["display"] = numberOfSearchResults
+            APIManager.request(AppURL.searchImage(on: .naver), method: .get, params: params, responseType: NaverResponse.self, completion: completion)
         }
         
         func completion<T>(result: (Result<T, AFError>)) where T: PageableImageInfo {
             switch result {
             case .success(let response):
                 dump(response)
-                if let imageMetaDatas = response.imageMetaDatas {
-                    self.imageMetaDatas = imageMetaDatas
-                    self.imageCollectionView.reloadData()
+                if page == 1 {
+                    imageMetaDatas = response.imageMetaDatas
+                } else {
+                    imageMetaDatas += response.imageMetaDatas
                 }
+                
+                page = response.nextPage(current: page)
+                hasMoreImages = !response.isEnd
+
+                imageCollectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -83,6 +116,13 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let text = navigationItem.searchController?.searchBar.text,
+           indexPath.row == imageMetaDatas.count - 1 {
+            fetchImages(on: searchEngine, query: text)
+        }
+    }
 }
 
 extension ImageListViewController: UISearchBarDelegate {
@@ -91,7 +131,7 @@ extension ImageListViewController: UISearchBarDelegate {
             return
         }
         
-        fetchImages(query: text)
+        fetchImages(on: searchEngine, query: text)
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
@@ -102,7 +142,7 @@ extension ImageListViewController: UISearchBarDelegate {
         self.searchEngine = searchEngine
         
         if let text = searchBar.text {
-            fetchImages(query: text)
+            fetchImages(on: searchEngine, query: text)
         }
     }
 }
