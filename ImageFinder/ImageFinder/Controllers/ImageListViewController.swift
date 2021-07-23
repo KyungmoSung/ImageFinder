@@ -15,10 +15,13 @@ class ImageListViewController: UIViewController {
     
     var searchEngine: SearchEngine = .kakao {
         didSet {
-            page = 1
-            hasMoreImages = true
-            imageMetaDatas.removeAll()
-            imageCollectionView.reloadData()
+            resetSearchResults()
+        }
+    }
+    
+    var searchText: String = "" {
+        didSet {
+            resetSearchResults()
         }
     }
     
@@ -49,6 +52,13 @@ class ImageListViewController: UIViewController {
         searchController.searchBar.delegate = self
         
         navigationItem.searchController = searchController
+    }
+    
+    func resetSearchResults() {
+        page = 1
+        hasMoreImages = true
+        imageMetaDatas.removeAll()
+        imageCollectionView.reloadData()
     }
     
     func fetchImages(on searchEngine: SearchEngine, query: String) {
@@ -124,6 +134,8 @@ extension ImageListViewController: UISearchBarDelegate {
             return
         }
         
+        searchText = text
+
         fetchImages(on: searchEngine, query: text)
     }
     
