@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class ThumbnailCell: UICollectionViewCell {
-    @IBOutlet private weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var thumbnailImageView: UIImageView!
     
     var imageURL: URL? {
         didSet {

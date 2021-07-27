@@ -11,7 +11,7 @@ import Alamofire
 class ImageListViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
-    let numberOfSearchResults = 10
+    let numberOfSearchResults = 20
     
     var searchEngine: SearchEngine = .kakao {
         didSet {
@@ -125,6 +125,16 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
            indexPath.row == imageMetaDatas.count - 1 {
             fetchImages(on: searchEngine, query: text)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let imageMetaData = imageMetaDatas[safe: indexPath.row],
+              let vc: ImageDetailViewController = storyboard?.instantiateVC() else {
+            return
+        }
+        
+        vc.imageMetaData = imageMetaData
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
