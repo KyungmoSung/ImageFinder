@@ -28,7 +28,7 @@ enum Sort {
     case accuracy
     case recency
     
-    static func key(for searchEngine: SearchEngine) -> String {
+    func key(for searchEngine: SearchEngine) -> String {
         switch (self, searchEngine) {
         case (.accuracy, .kakao):
             return "accuracy"

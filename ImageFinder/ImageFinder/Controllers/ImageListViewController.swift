@@ -68,7 +68,7 @@ class ImageListViewController: UIViewController {
         
         var params: [String: Any] = [
             "query": query,
-            "sort": Sort.key(for: searchEngine)
+            "sort": Sort.accuracy.key(for: searchEngine)
         ]
         
         switch searchEngine {
