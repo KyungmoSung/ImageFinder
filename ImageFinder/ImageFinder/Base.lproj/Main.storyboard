@@ -62,7 +62,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="thumbnailImageView" destination="gpU-qO-OwO" id="5v0-h7-Bjx"/>
+                                            <outlet property="imageView" destination="gpU-qO-OwO" id="5v0-h7-Bjx"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -97,18 +97,15 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K8d-cn-wHW">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="DfT-De-TSJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="420.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DfT-De-TSJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="400" translatesAutoresizingMaskIntoConstraints="NO" id="5Dk-1U-eag">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Dk-1U-eag">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="hBZ-x4-uCn"/>
+                                                </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3p-Cv-KSw">
-                                                <rect key="frame" x="0.0" y="400" width="414" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -135,7 +132,8 @@
                     <navigationItem key="navigationItem" id="FEn-3S-ray"/>
                     <connections>
                         <outlet property="imageView" destination="5Dk-1U-eag" id="iQw-RA-Agt"/>
-                        <outlet property="label" destination="G3p-Cv-KSw" id="dlY-jO-7aH"/>
+                        <outlet property="imageViewHeight" destination="hBZ-x4-uCn" id="vmh-Hz-kZe"/>
+                        <outlet property="stackView" destination="DfT-De-TSJ" id="Ebb-HO-XqU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFv-xk-Zdr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

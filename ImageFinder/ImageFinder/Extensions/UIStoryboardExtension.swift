@@ -9,6 +9,6 @@ import UIKit
 
 extension UIStoryboard {
     func instantiateVC<T: UIViewController>() -> T? {
-        return instantiateViewController(withIdentifier: String(describing: self)) as? T
+        return instantiateViewController(withIdentifier: String(describing: T.self)) as? T
     }
 }

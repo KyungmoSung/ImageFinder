@@ -68,16 +68,15 @@ class ImageListViewController: UIViewController {
         
         var params: [String: Any] = [
             "query": query,
+            "sort": Sort.key(for: searchEngine)
         ]
         
         switch searchEngine {
         case .kakao:
-            params["sort"] = "accuracy"
             params["page"] = page
             params["size"] = numberOfSearchResults
             APIManager.request(AppURL.searchImage(on: .kakao), method: .get, params: params, responseType: KakaoResponse.self, completion: completion)
         case .naver:
-            params["sort"] = "sim"
             params["start"] = page
             params["display"] = numberOfSearchResults
             APIManager.request(AppURL.searchImage(on: .naver), method: .get, params: params, responseType: NaverResponse.self, completion: completion)
@@ -129,12 +128,13 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let imageMetaData = imageMetaDatas[safe: indexPath.row],
-              let vc: ImageDetailViewController = storyboard?.instantiateVC() else {
+              let vc = storyboard?.instantiateViewController(identifier: "ImageDetailViewController", creator: { coder in
+                ImageDetailViewController(coder: coder, imageMetaData: imageMetaData)
+              }) else {
             return
         }
-        
-        vc.imageMetaData = imageMetaData
-        navigationController?.pushViewController(vc, animated: true)
+
+        present(vc, animated: true, completion: nil)
     }
 }
 

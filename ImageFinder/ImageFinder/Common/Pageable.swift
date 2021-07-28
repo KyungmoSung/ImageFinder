@@ -17,7 +17,7 @@ protocol PageableImageInfo: Pageable {
     var imageMetaDatas: [ImageMetaData] { get }
 }
 
-protocol ImageMetaData {
+protocol ImageMetaData: Encodable {
     var imageUrl: String? { get }
     var thumbnailUrl: String? { get }
     var imageSize: CGSize? { get }

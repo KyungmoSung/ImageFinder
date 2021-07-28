@@ -23,3 +23,21 @@ enum SearchEngine: Int, CaseIterable {
         return value.starts(with: AppURL.domain(for: pattern))
     }
 }
+
+enum Sort {
+    case accuracy
+    case recency
+    
+    static func key(for searchEngine: SearchEngine) -> String {
+        switch (self, searchEngine) {
+        case (.accuracy, .kakao):
+            return "accuracy"
+        case (.accuracy, .naver):
+            return "sim"
+        case (.recency, .kakao):
+            return "recency"
+        case (.recency, .naver):
+            return "date"
+        }
+    }
+}

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8EDFFB00780E2E4B6850439B /* Pods_ImageFinderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251BDD669F83F049924A7934 /* Pods_ImageFinderTests.framework */; };
+		CD73B17A26B0F04000EFE199 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73B17926B0F04000EFE199 /* EncodableExtension.swift */; };
 		CD8DA28526A10D4200CC3555 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA28426A10D4200CC3555 /* AppDelegate.swift */; };
 		CD8DA28726A10D4200CC3555 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA28626A10D4200CC3555 /* SceneDelegate.swift */; };
 		CD8DA28926A10D4200CC3555 /* ImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DA28826A10D4200CC3555 /* ImageListViewController.swift */; };
@@ -58,6 +59,7 @@
 		8F8D3073FFB6BC9DF1A1E2A8 /* Pods-ImageFinder-ImageFinderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageFinder-ImageFinderUITests.debug.xcconfig"; path = "Target Support Files/Pods-ImageFinder-ImageFinderUITests/Pods-ImageFinder-ImageFinderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8FE1BA4B24CB3FA0AB3AAAF0 /* Pods-ImageFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageFinder.release.xcconfig"; path = "Target Support Files/Pods-ImageFinder/Pods-ImageFinder.release.xcconfig"; sourceTree = "<group>"; };
 		BFD79F17BD2F7A1018245A96 /* Pods_ImageFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD73B17926B0F04000EFE199 /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtension.swift; sourceTree = "<group>"; };
 		CD8DA28126A10D4200CC3555 /* ImageFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8DA28426A10D4200CC3555 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD8DA28626A10D4200CC3555 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				CD8DA2B926A152AF00CC3555 /* CollectionExtension.swift */,
 				CD8EBD9F26AAA9AC00AC13B7 /* UIStoryboardExtension.swift */,
 				CD8EBDA126AAB46000AC13B7 /* StringExtension.swift */,
+				CD73B17926B0F04000EFE199 /* EncodableExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				CD8DA2B726A149DB00CC3555 /* ThumbnailCell.swift in Sources */,
 				CD8EBD9A26A6922200AC13B7 /* NaverResponse.swift in Sources */,
 				CD8EBDA026AAA9AC00AC13B7 /* UIStoryboardExtension.swift in Sources */,
+				CD73B17A26B0F04000EFE199 /* EncodableExtension.swift in Sources */,
 				CD8EBD9326A177C800AC13B7 /* KeyConstants.swift in Sources */,
 				CD8EBD9C26A6A2F400AC13B7 /* Pageable.swift in Sources */,
 				CD8EBD9826A6903100AC13B7 /* SearchEngine.swift in Sources */,

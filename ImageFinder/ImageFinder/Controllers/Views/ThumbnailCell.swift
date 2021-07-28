@@ -9,18 +9,22 @@ import UIKit
 import Kingfisher
 
 class ThumbnailCell: UICollectionViewCell {
-    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet private weak var imageView: UIImageView!
     
     var imageURL: URL? {
         didSet {
-            thumbnailImageView.kf.indicatorType = .activity
-            thumbnailImageView.kf.setImage(with: imageURL, options: [.transition(.fade(0.3))])
+            imageView.kf.indicatorType = .activity
+            imageView.kf.setImage(with: imageURL, options: [.transition(.fade(0.3))])
         }
+    }
+    
+    var image: UIImage? {
+        return imageView.image
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        thumbnailImageView.image = nil
+        imageView.image = nil
     }
 }
