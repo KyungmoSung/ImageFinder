@@ -5,6 +5,8 @@
 //  Created by Front-Artist on 2021/07/20.
 //
 
+import UIKit
+
 enum SearchEngine: Int, CaseIterable {
     case kakao = 0
     case naver
@@ -38,6 +40,31 @@ enum Sort {
             return "recency"
         case (.recency, .naver):
             return "date"
+        }
+    }
+}
+
+enum Grid: Int {
+    case one = 1
+    case two
+    case three
+    
+    var image: UIImage? {
+        switch self {
+        case .one:
+            return UIImage(systemName: "rectangle.grid.1x2")
+        case .two:
+            return UIImage(systemName: "rectangle.grid.2x2")
+        case .three:
+            return UIImage(systemName: "rectangle.grid.3x2")
+        }
+    }
+    
+    var nextGrid: Grid {
+        if let netxtGrid = Grid(rawValue: self.rawValue + 1) {
+            return netxtGrid
+        } else {
+            return .one
         }
     }
 }

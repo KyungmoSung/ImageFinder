@@ -25,6 +25,13 @@ class ImageListViewController: UIViewController {
         }
     }
     
+    var grid: Grid = .two {
+        didSet {
+            navigationItem.rightBarButtonItem?.image = grid.nextGrid.image
+            imageCollectionView.performBatchUpdates{}
+        }
+    }
+    
     var imageMetaDatas: [ImageMetaData] = []
     var page: Int = 1
     var hasMoreImages: Bool = true
@@ -42,6 +49,9 @@ class ImageListViewController: UIViewController {
     func setupNavigationBar() {
         navigationItem.title = "Image Finder"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let barButtonItem = UIBarButtonItem(image: grid.nextGrid.image, style: .plain, target: self, action: #selector(didTapGridBtn(_:)))
+        navigationItem.rightBarButtonItem = barButtonItem
     }
     
     func setupSearchController() {
@@ -50,8 +60,13 @@ class ImageListViewController: UIViewController {
         searchController.searchBar.showsScopeBar = true
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
         
         navigationItem.searchController = searchController
+    }
+    
+    @objc func didTapGridBtn(_ sender: UIBarButtonItem) {
+        grid = grid.nextGrid
     }
     
     func resetSearchResults() {
@@ -138,6 +153,22 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
     }
 }
 
+extension ImageListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = view.bounds.width / CGFloat(grid.rawValue)
+        return CGSize(width: size, height: size)
+    }
+}
+
+
 extension ImageListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else {
@@ -145,7 +176,6 @@ extension ImageListViewController: UISearchBarDelegate {
         }
         
         searchText = text
-
         fetchImages(on: searchEngine, query: text)
     }
     
