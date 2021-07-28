@@ -135,7 +135,7 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let text = navigationItem.searchController?.searchBar.text,
+        if let text = navigationItem.searchController?.searchBar.text, !text.isEmpty,
            indexPath.row == imageMetaDatas.count - 1 {
             fetchImages(on: searchEngine, query: text)
         }
@@ -171,7 +171,7 @@ extension ImageListViewController: UICollectionViewDelegateFlowLayout {
 
 extension ImageListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else {
+        guard let text = searchBar.text, !text.isEmpty else {
             return
         }
         
@@ -186,7 +186,7 @@ extension ImageListViewController: UISearchBarDelegate {
         
         self.searchEngine = searchEngine
         
-        if let text = searchBar.text {
+        if let text = searchBar.text, !text.isEmpty {
             fetchImages(on: searchEngine, query: text)
         }
     }
